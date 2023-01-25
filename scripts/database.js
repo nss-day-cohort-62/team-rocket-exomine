@@ -29,11 +29,11 @@ const database = {
         {id: 10, name: 'Platinum'}
     ],
     facilities: [
-        {id: 1, name: "Nashville", status: "Active", governorId: 4, mineralsId: [1,]},
+        {id: 1, name: "Nashville", status: "Active", governorId: 4, mineralsId: [1]},
         {id: 2, name: "Bowling Green", status: "Active", governorId: 1, mineralsId: [5] },
         {id: 3, name: "Denver", status: "Inactive", governorId: 3, mineralsId: [2, 7] },
         {id: 4, name: "Boulder", status: "Active", governorId: 4, mineralsId: [2] },
-        {id: 5, name: "Chattanooga", status: "Inactive", governorId: 7, mineralsId: [10,5] },
+        {id: 5, name: "Chattanooga", status: "Inactive", governorId: 7, mineralsId: [10, 5] },
         {id: 6, name: "Hell", status: "Inactive", governorId: 3, mineralsId: [4] },
         {id: 7, name: "Knoxville", status: "Active", governorId: 2, mineralsId: [7] },
         {id: 8, name: "Chicago", status: "Active", governorId: 2, mineralsId: [2] },
@@ -51,15 +51,37 @@ const database = {
     customOrders: [],
     transientState: {}
 }
+export const getColonies = () => {
+    return database.colonies.map(colony => ({...colony}))
+}
+export const getGovernors = () => {
+    return database.governors.map(governor => ({...governor}))
+}
+export const getMinerals = () => {
+    return database.minerals.map(mineral => ({...mineral}))
+}
+export const getFacilities = () => {
+    return database.facilities.map(f => ({...f}))
+}
 
+export const setColony = (id) => {
+    database.transientState.colonyId = id
+    document.dispatchEvent( new CustomEvent("stateChanged") )
+}
+export const setGovernor = (id) => {
+    database.transientState.governorId = id
+    document.dispatchEvent( new CustomEvent("stateChanged") )
+}
+export const setMineral = (id) => {
+    database.transientState.mineralsId = id
+    document.dispatchEvent( new CustomEvent("stateChanged") )
+}
 export const setFacility = (facilityId) => {
     database.transientState.selectedFacility = facilityId
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 
-export const getFacilities = () => {
-    return database.facilities.map(f => ({...f}))
-}
+
 
 export const purchaseMineral = () => {
 
