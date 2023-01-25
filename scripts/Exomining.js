@@ -1,3 +1,8 @@
+import { Governors } from "./Govenors.js"
+import { Facilities } from "./Facilities.js"
+import { Colonies } from "./Colonies.js"
+
+
 export const Exomining = () => {
     return `
         <h1>Exomining</h1>
@@ -10,6 +15,8 @@ export const Exomining = () => {
                 ${Facilities()}
             </section>
         </article>
+
+        <article>${Colonies()}</article>
 
         <article>
             <h2>Space Cart</h2>
