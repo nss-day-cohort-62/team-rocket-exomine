@@ -4,9 +4,13 @@ const colonies = getColonies()
 const governors = getGovernors()
 
 
+
+
+
 export const Colonies = () => {
 
     const selectedGovernorId = getGovernorId()
+    
 
     for (const governor of governors) {
 
@@ -15,14 +19,13 @@ export const Colonies = () => {
             for (const colony of colonies) {
 
                 if (colony.id === governor.colonyId) {
+
                     setColony(colony.id)
-                   
-                        return `<h2>${colony.name}</h2>`
-                    
-                 
+                    return `<h2>${colony.name}</h2>` 
                 }
             }
         }
     }
+    
+}
 
-    }
