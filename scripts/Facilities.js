@@ -3,7 +3,7 @@ import { getFacilities, setFacility, getGovernorId } from "./database.js";
 const facilities = getFacilities()
 
 document.addEventListener("change", (event) => {
-    if (event.target.name === "facility") {
+    if (event.target.id === "facility") {
         setFacility(parseInt(event.target.value))
     }
 })
