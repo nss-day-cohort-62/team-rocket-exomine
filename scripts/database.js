@@ -93,7 +93,7 @@ export const getFacilityId = () => {
 
 export const setColony = (id) => {
     database.transientState.colonyId = id
-    document.dispatchEvent( new CustomEvent("stateChanged") )
+   // document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 export const setGovernor = (id) => {
     database.transientState.governorId = id
