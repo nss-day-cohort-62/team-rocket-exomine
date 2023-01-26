@@ -15,6 +15,7 @@ import {
   purchaseMineral,
   getMinerals,
   getMineralId,
+  getTransientState,
   getColonies,
   getFacilityMinerals,
   getPurchaseResources,} from "./database.js";
@@ -46,14 +47,20 @@ export const MineralInSpaceCart = () => {
 
 export const MineralsMoved = (order) => {
   const minerals = getMinerals();
+  const transientState = getTransientState()
 
   const foundMineral = minerals.find((mineral) => {
     return mineral.id === order.mineralId;
   });
+  if (transientState.colonyId === order.colonyId) {
+      let html = `<li>
+            ${order.amount} tons of ${foundMineral.name}
+            </li>`;
+    // document.dispatchEvent( new CustomEvent("HTMLReset"))
+    return html
+  }
 
-  return `<li>
-        ${order.amount} tons of ${foundMineral.name}
-        </li>`;
+
 };
 
 /*
@@ -82,10 +89,15 @@ export const Orders = () => {
     const purchasedResources = getPurchaseResources()
     //const transientState = getTransientState()
     let html = "<ul>"
-
+        
     const listItems = purchasedResources.map(MineralsMoved)
 
+        
     html+= listItems.join("")
+
+    // const listItems = purchasedResources.map(MineralsMoved)
+
+    // html+= listItems.join("")
     html+= "</ul>"
     return html
 
