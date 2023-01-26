@@ -1,6 +1,7 @@
-import { Governors } from "./Govenors.js"
+import { Governors } from "./Governors.js"
 import { Facilities } from "./Facilities.js"
 import { Colonies } from "./Colonies.js"
+import { Minerals } from "./Minerals.js"
 
 
 export const Exomining = () => {
@@ -14,11 +15,15 @@ export const Exomining = () => {
 
             <section class="choices__facilities options">
                 ${Facilities()}
-                
+                </section>
+        <article>${Colonies()}</article>
+            
+            <section>${Minerals()}
             </section>
+
         </article>
 
-        <article>${Colonies()}</article>
+       
 
         <article>
             <h2>Space Cart</h2>

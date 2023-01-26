@@ -1,28 +1,39 @@
-import { getMinerals, getFacilities, getFacilityId  } from "./database.js";
+import { getMinerals, getFacilities, getFacilityId, getFacilityMinerals  } from "./database.js";
 
 const minerals = getMinerals()
-
+const facilities = getFacilities()
+const facilityMinerals = getFacilityMinerals()
 export const Minerals = () => {
-    let html = 
+    let html = ""
 
-    html += `<h2> Facility Minerals for ${facility.name}`
+   
 
     const foundFacilityId = getFacilityId()
     if (foundFacilityId) {
-        const arrayOfOptions = minerals.map( (mineral) => {
-            if (foundFacilityId === mineral.miningFacilityId) {
-
-         return `<li>
-            <input type="radio" name="mineral" value="${mineral.id}">${mineral.name}</input>
-        `
+        for (const facility of facilities) {
+            if (foundFacilityId === facility.id) {
+                html += `<h2>${facility.location}</h2>`
+            }
         }
+        html += "<ul>"
+        const arrayOfOptions = minerals.map((mineral) => {
+            for (const facilityMineral of facilityMinerals) {
+                if (foundFacilityId === facilityMineral.miningFacilityId) {
+                    if (facilityMineral.mineralId === mineral.id) {
+                        html += `<li>
+                       <input type="radio" name="mineral" value="${mineral.id}">${mineral.name}</li>
+                   `
+                    }
+                    
+                   }
+            }
+           
     }
     )
     html += arrayOfOptions.join("")
+    html += `</ul>`
     }
-    
-
    
-    html += "</select>"
+
     return html
 }
