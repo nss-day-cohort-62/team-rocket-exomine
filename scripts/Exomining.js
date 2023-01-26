@@ -18,8 +18,7 @@ export const Exomining = () => {
                 ${Facilities()}
                 </section>
         <article>${Colonies()}</article>
-        <article class="customOrders">   
-                ${Orders()}
+
         </article>
             <section>${Minerals()}
             </section>

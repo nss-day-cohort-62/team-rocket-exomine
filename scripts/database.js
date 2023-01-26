@@ -1,4 +1,4 @@
-const database = {
+export const database = {
     colonies: [
         {id: 1, name: 'Halo'},
         {id: 2, name: 'Earth'},
@@ -109,7 +109,8 @@ export const setColony = (id) => {
    // document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 export const setGovernor = (id) => {
-    database.transientState = {}
+    document.dispatchEvent( new CustomEvent("transientReset"))
+    document.dispatchEvent( new CustomEvent("HTMLReset"))
     database.transientState.governorId = id
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
