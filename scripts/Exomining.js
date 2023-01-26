@@ -2,6 +2,7 @@ import { Governors } from "./Governors.js"
 import { Facilities } from "./Facilities.js"
 import { Colonies } from "./Colonies.js"
 import { Minerals } from "./Minerals.js"
+import { MineralInSpaceCart } from "./SpaceCart.js"
 
 
 export const Exomining = () => {
@@ -27,6 +28,7 @@ export const Exomining = () => {
 
         <article>
             <h2>Space Cart</h2>
+            ${MineralInSpaceCart()}
             <button id="orderButton">Purchase Mineral</button>
         </article>
 

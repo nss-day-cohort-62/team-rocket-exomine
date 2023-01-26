@@ -21,7 +21,7 @@ export const Minerals = () => {
                 if (foundFacilityId === facilityMineral.miningFacilityId) {
                     if (facilityMineral.mineralId === mineral.id) {
                         html += `<li>
-                       <input type="radio" name="mineral" value="${mineral.id}">${mineral.name}</li>
+                       <input type="radio" name="mineral" value="${mineral.id}">${facilityMineral.amount} tons of ${mineral.name}</li>
                    `
                     }
                     

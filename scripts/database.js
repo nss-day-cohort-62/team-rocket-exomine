@@ -67,7 +67,7 @@ const database = {
 
     ],
 
-    purchasedResources: [{id: 1, colonyId: 1, mineralId: 6}],
+    purchasedResources: [{id: 1, colonyId: 1, mineralId: 6, amount: 0}],
     transientState: {}
 }
 export const getColonies = () => {
@@ -85,12 +85,21 @@ export const getFacilities = () => {
 export const getFacilityMinerals = () => {
     return database.facilityMinerals.map(facilityMineral => ({...facilityMineral}))
 }
+export const getPurchaseResources = () => {
+    return database.purchasedResources.map(purchasedResource => ({...purchasedResource}))
+}
+export const getTransientState = () => {
+    return database.transientState
+}
 
 export const getGovernorId = () => {
     return database.transientState.governorId
 }
 export const getFacilityId = () => {
     return database.transientState.facilityId
+}
+export const getMineralId = () => {
+    return database.transientState.mineralId
 }
 
 
@@ -103,7 +112,7 @@ export const setGovernor = (id) => {
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 export const setMineral = (id) => {
-    database.transientState.mineralsId = id
+    database.transientState.mineralId = id
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 export const setFacility = (id) => {
@@ -114,7 +123,15 @@ export const setFacility = (id) => {
 
 
 export const purchaseMineral = () => {
+    const newOrder = {...database.transientState}
 
+    const lastIndex = database.purchasedResources.length - 1
+
+    newOrder.id = database.purchasedResources[lastIndex].id + 1
+
+    database.purchasedResources.push(newOrder)
+
+    database.transientState = {}
     // Broadcast custom event to entire documement so that the
     // application can re-render and update state
     document.dispatchEvent( new CustomEvent("stateChanged") )
