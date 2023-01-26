@@ -11,8 +11,10 @@ export const Exomining = () => {
             <section class="choices__governors options">
                 ${Governors()}
             </section>
+
             <section class="choices__facilities options">
                 ${Facilities()}
+                
             </section>
         </article>
 

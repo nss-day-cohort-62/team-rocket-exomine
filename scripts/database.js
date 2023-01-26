@@ -29,22 +29,22 @@ const database = {
         {id: 10, name: 'Platinum'}
     ],
     facilities: [
-        {id: 1, location: "Nashville", status: "Active"},
-        {id: 2, location: "Bowling Green", status: "Active"}, 
-        {id: 3, location: "Denver", status: "Inactive"},
-        {id: 4, location: "Boulder", status: "Active"},
-        {id: 5, location: "Chattanooga", status: "Inactive"},
-        {id: 6, location: "Hell", status: "Inactive"},
-        {id: 7, location: "Knoxville", status: "Active"},
-        {id: 8, location: "Chicago", status: "Active"},
-        {id: 9, location: "Clarkson", status: "Active"},
-        {id: 10, location: "Seattle", status: "Active"},
-        {id: 11, location: "New York City", status: "Active"},
-        {id: 12, location: "Khazad-Dum", status: "Active"},
-        {id: 13, location: "Pandora", status: "Active"},
-        {id: 14, location: "Memphis", status: "Inactive"},
-        {id: 15, location: "Cairo", status: "Active"},
-        {id: 16, location: "King's Landing", status: "Active"}
+        {id: 1, location: "Nashville", status: "Active", governorId: 4},
+        {id: 2, location: "Bowling Green", status: "Active", governorId: 1}, 
+        {id: 3, location: "Denver", status: "Inactive", governorId: 3},
+        {id: 4, location: "Boulder", status: "Active", governorId: 4},
+        {id: 5, location: "Chattanooga", status: "Inactive",governorId: 7},
+        {id: 6, location: "Hell", status: "Active", governorId: 3},
+        {id: 7, location: "Knoxville", status: "Active", governorId: 2},
+        {id: 8, location: "Chicago", status: "Active", governorId: 2},
+        {id: 9, location: "Clarkson", status: "Active", governorId: 8},
+        {id: 10, location: "Seattle", status: "Active", governorId: 6},
+        {id: 11, location: "New York City", status: "Active", governorId: 6},
+        {id: 12, location: "Khazad-Dum", status: "Active", governorId: 1},
+        {id: 13, location: "Pandora", status: "Active", governorId: 5},
+        {id: 14, location: "Memphis", status: "Inactive", governorId: 7},
+        {id: 15, location: "Cairo", status: "Active", governorId: 8},
+        {id: 16, location: "King's Landing", status: "Active", governorId: 5}
     ],
     facilityMinerals: [
         {id: 1, miningFacilityId: 1, mineralId: 6, amount: 53},
@@ -86,6 +86,10 @@ export const getFacilities = () => {
 export const getGovernorId = () => {
     return database.transientState.governorId
 }
+export const getFacilityId = () => {
+    return database.transientState.facilityId
+}
+
 
 export const setColony = (id) => {
     database.transientState.colonyId = id

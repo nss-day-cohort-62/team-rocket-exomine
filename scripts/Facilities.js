@@ -1,4 +1,4 @@
-import { getFacilities, setFacility } from "./database.js";
+import { getFacilities, setFacility, getGovernorId } from "./database.js";
 
 const facilities = getFacilities()
 
@@ -11,14 +11,22 @@ document.addEventListener("change", (event) => {
 export const Facilities = () => {
     let html = "<label>Choose a facility</label>"
 
-    html += '<select id="facility">'
+    html += `<select id="facility">
+    <option value="0"> Choose a Facility</option>`
 
-    const arrayOfOptions = facilities.map( (facility) => {
-            return `<option value="${facility.id}">${facility.name}</option>`
+    const foundGovernorId = getGovernorId()
+    if (foundGovernorId) {
+        const arrayOfOptions = facilities.map( (facility) => {
+            if (foundGovernorId === facility.governorId) {
+            return `<option value="${facility.id}">${facility.location}</option>`
         }
+    }
     )
-
     html += arrayOfOptions.join("")
+    }
+    
+
+   
     html += "</select>"
     return html
 }

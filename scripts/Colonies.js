@@ -3,31 +3,26 @@ import { getColonies, setColony, getGovernorId, getGovernors } from "./database.
 const colonies = getColonies()
 const governors = getGovernors()
 
-document.addEventListener(
-    "change",
-    (event) => {
-        if (event.target.id === "governor") {
-            const selectedGovernorId = getGovernorId()
 
-            for (const governor of governors) {
+export const Colonies = () => {
 
-                if (selectedGovernorId === governor.id) {
+    const selectedGovernorId = getGovernorId()
 
-                    for (const colony of colonies) {
+    for (const governor of governors) {
 
-                        if (colony.id === governor.colonyId){
-                            setColony(colony.id)
-                            Colonies(colony)
-                        }
-                    }
+        if (selectedGovernorId === governor.id) {
+
+            for (const colony of colonies) {
+
+                if (colony.id === governor.colonyId) {
+                    setColony(colony.id)
+                   
+                        return `<h2>${colony.name}</h2>`
+                    
+                 
                 }
             }
         }
     }
-)
 
-export const Colonies = (colony) => {
-    if (colony){
-        return `<h2>${colony.name}</h2>`
     }
-}

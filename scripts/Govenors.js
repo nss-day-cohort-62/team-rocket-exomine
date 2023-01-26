@@ -16,7 +16,8 @@ document.addEventListener(
 export const Governors = () => {
     let html = "<label>Choose a governor</label>"
 
-    html += '<select id="governor">'
+    html += `<select id="governor">
+    <option value="0"> Choose a Governor</option>`
 
     const arrayOfOptions = governors.map( (governor) => {
             return `<option value="${governor.id}">${governor.name}</option>`
