@@ -10,67 +10,83 @@ show total amount of minerals purchased by colony under colony name
 
 */
 
-import { setMineral, purchaseMineral, getMinerals, getMineralId, getColonies, getFacilityMinerals } from "./database.js"
+import {
+  setMineral,
+  purchaseMineral,
+  getMinerals,
+  getMineralId,
+  getColonies,
+  getFacilityMinerals,
+  getPurchaseResources,} from "./database.js";
 
+document.addEventListener("click", (event) => {
+  if (event.target.name === "mineral") {
+    setMineral(parseInt(event.target.value));
+  }
+});
 
-document.addEventListener(
-    "click",
-    (event) => {
-        if (event.target.name === 'mineral') {
-            setMineral(parseInt(event.target.value))
-        }
+document.addEventListener("click", (event) => {
+  if (event.target.id === "orderButton") {
+    purchaseMineral();
+      
     }
-)
 
-document.addEventListener(
-    "click",
-    (event) => {
-        if (event.target.name === 'orderButton') {
-            purchaseMineral()
-        }
-    }
-)
+});
 
 export const MineralInSpaceCart = () => {
-    const minerals = getMinerals()
-    const foundMineralId = getMineralId()
-
-    for (const mineral of minerals) {
-        if (foundMineralId === mineral.id) {
-            return `<li>1 ton of ${mineral.name}</li>`
-        }
+  const minerals = getMinerals();
+  const foundMineralId = getMineralId();
+ 
+  for (const mineral of minerals) {
+    if (foundMineralId === mineral.id) {
+      return `<li>1 ton of ${mineral.name}</li>`;
     }
-}
+  }
+};
 
 export const MineralsMoved = (order) => {
-    const minerals = getMinerals()
-    const colonies = getColonies()
-    const facilityMinerals = getFacilityMinerals()
+  const minerals = getMinerals();
 
-    const foundMineral = minerals.find(
-        (mineral) => {
-            return mineral.id === order.mineralId
-        }
-    )
+  const foundMineral = minerals.find((mineral) => {
+    return mineral.id === order.mineralId;
+  });
 
-    const foundColony = colonies.find(
-        (colony) => {
-            return colony.id === order.colonyId
-        }
-    )
-
-    for (const facilityMineral of facilityMinerals) {
-        if (facilityMineral.mineralId === foundMineral.id) {
-            facilityMineral.amount--
-        }
-    }
-
-    order.amount++
-
-    return `<li>
+  return `<li>
         ${order.amount} tons of ${foundMineral.name}
-        </li>`
-    
-}
+        </li>`;
+};
 
-export const 
+/*
+const MineralAmounts = (purchasedResource) => {
+  const minerals = getMinerals();
+  const colonies = getColonies();
+  const facilityMinerals = getFacilityMinerals();
+    purchasedResource.amount = 0
+  
+  for (const facilityMineral of facilityMinerals) {
+    if (facilityMineral.mineralId === purchasedResource.mineralId) {
+        facilityMineral.amount--;
+    }
+  }
+  for (const colony of colonies) {
+    for (const mineral of minerals) {
+      if (purchasedResource.mineralId === mineral.id && purchasedResource.colonyId === colony.id) {
+        purchasedResource.amount++;
+      }
+    }
+  }
+};
+*/
+
+export const Orders = () => {
+    const purchasedResources = getPurchaseResources()
+    //const transientState = getTransientState()
+    let html = "<ul>"
+
+    const listItems = purchasedResources.map(MineralsMoved)
+
+    html+= listItems.join("")
+    html+= "</ul>"
+    return html
+
+}

@@ -77,20 +77,21 @@ export const getGovernors = () => {
     return database.governors.map(governor => ({...governor}))
 }
 export const getMinerals = () => {
-    return database.minerals.map(mineral => ({...mineral}))
+    return database.minerals
 }
 export const getFacilities = () => {
     return database.facilities.map(f => ({...f}))
 }
 export const getFacilityMinerals = () => {
-    return database.facilityMinerals.map(facilityMineral => ({...facilityMineral}))
+    return database.facilityMinerals
 }
 export const getPurchaseResources = () => {
-    return database.purchasedResources.map(purchasedResource => ({...purchasedResource}))
+    return database.purchasedResources
 }
 export const getTransientState = () => {
     return database.transientState
 }
+
 
 export const getGovernorId = () => {
     return database.transientState.governorId
@@ -108,6 +109,7 @@ export const setColony = (id) => {
    // document.dispatchEvent( new CustomEvent("stateChanged") )
 }
 export const setGovernor = (id) => {
+    database.transientState = {}
     database.transientState.governorId = id
     document.dispatchEvent( new CustomEvent("stateChanged") )
 }
@@ -129,9 +131,25 @@ export const purchaseMineral = () => {
 
     newOrder.id = database.purchasedResources[lastIndex].id + 1
 
-    database.purchasedResources.push(newOrder)
-
-    database.transientState = {}
+    newOrder.amount = 1
+    const facilityMinerals = getFacilityMinerals();
+    const purchasedResources = getPurchaseResources()
+    const foundPurchasedResource = purchasedResources.find(
+        (purchasedResource) => {
+            return purchasedResource.mineralId === newOrder.mineralId && purchasedResource.colonyId === newOrder.colonyId
+        }
+    )
+    
+    for (const facilityMineral of facilityMinerals) {
+      if (facilityMineral.mineralId === newOrder.mineralId) {
+          facilityMineral.amount--;
+      }
+    }
+    if(foundPurchasedResource) {
+        foundPurchasedResource.amount++
+    }else{
+        database.purchasedResources.push(newOrder)
+    }
     // Broadcast custom event to entire documement so that the
     // application can re-render and update state
     document.dispatchEvent( new CustomEvent("stateChanged") )

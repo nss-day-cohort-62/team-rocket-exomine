@@ -2,7 +2,7 @@ import { Governors } from "./Governors.js"
 import { Facilities } from "./Facilities.js"
 import { Colonies } from "./Colonies.js"
 import { Minerals } from "./Minerals.js"
-import { MineralInSpaceCart } from "./SpaceCart.js"
+import { MineralInSpaceCart, Orders } from "./SpaceCart.js"
 
 
 export const Exomining = () => {
@@ -18,7 +18,9 @@ export const Exomining = () => {
                 ${Facilities()}
                 </section>
         <article>${Colonies()}</article>
-            
+        <article class="customOrders">   
+                ${Orders()}
+        </article>
             <section>${Minerals()}
             </section>
 
@@ -32,8 +34,6 @@ export const Exomining = () => {
             <button id="orderButton">Purchase Mineral</button>
         </article>
 
-        <article class="customOrders">
-            <h2>Custom Mineral Orders</h2>
-        </article>
+       
     `
 }

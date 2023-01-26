@@ -1,4 +1,4 @@
-import { getFacilities, setFacility, getGovernorId } from "./database.js";
+import { getFacilities, setFacility, getGovernorId, getTransientState } from "./database.js";
 
 const facilities = getFacilities()
 
@@ -10,15 +10,19 @@ document.addEventListener("change", (event) => {
 
 export const Facilities = () => {
     let html = "<label>Choose a facility</label>"
-
+    const transientState = getTransientState()
     html += `<select id="facility">
     <option value="0"> Choose a Facility</option>`
 
     const foundGovernorId = getGovernorId()
     if (foundGovernorId) {
         const arrayOfOptions = facilities.map( (facility) => {
+            let selected = ""
+            if(transientState.facilityId === facility.id) {
+                selected = "selected"
+            }
             if (foundGovernorId === facility.governorId) {
-            return `<option value="${facility.id}">${facility.location}</option>`
+            return `<option value="${facility.id}" ${selected}>${facility.location}</option>`
         }
     }
     )
