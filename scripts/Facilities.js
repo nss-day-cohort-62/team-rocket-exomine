@@ -21,7 +21,7 @@ export const Facilities = () => {
             if(transientState.facilityId === facility.id) {
                 selected = "selected"
             }
-            if (foundGovernorId === facility.governorId) {
+            if (foundGovernorId === facility.governorId && facility.status === 'Active') {
             return `<option value="${facility.id}" ${selected}>${facility.location}</option>`
         }
     }

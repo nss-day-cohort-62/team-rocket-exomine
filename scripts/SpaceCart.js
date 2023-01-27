@@ -17,8 +17,10 @@ import {
   getMineralId,
   getTransientState,
   getColonies,
+  getFacilities,
   getFacilityMinerals,
-  getPurchaseResources,} from "./database.js";
+  getPurchaseResources,
+  getFacilityId,} from "./database.js";
 
 document.addEventListener("click", (event) => {
   if (event.target.name === "mineral") {
@@ -37,10 +39,14 @@ document.addEventListener("click", (event) => {
 export const MineralInSpaceCart = () => {
   const minerals = getMinerals();
   const foundMineralId = getMineralId();
- 
+  const foundFacilityId = getFacilityId();
+  const facilities = getFacilities();
+
   for (const mineral of minerals) {
-    if (foundMineralId === mineral.id) {
-      return `<li>1 ton of ${mineral.name}</li>`;
+    for (const facility of facilities) {
+      if (foundMineralId === mineral.id && foundFacilityId === facility.id) {
+        return `<li>1 ton of ${mineral.name} from ${facility.location}</li>`;
+      }
     }
   }
 };
