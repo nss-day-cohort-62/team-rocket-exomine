@@ -21,7 +21,7 @@ export const Colonies = () => {
                 if (colony.id === governor.colonyId) {
 
                     setColony(colony.id)
-                    return `<h2>${colony.name}</h2>
+                    return `<h2>${colony.name} Minerals</h2>
                     ${Orders()}` 
                 }
             }
