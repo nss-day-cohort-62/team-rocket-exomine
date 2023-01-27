@@ -67,7 +67,7 @@ export const database = {
 
     ],
 
-    purchasedResources: [{id: 1, colonyId: 1, mineralId: 6, amount: 0}],
+    purchasedResources: [],
     transientState: {}
 }
 export const getColonies = () => {
@@ -129,8 +129,12 @@ export const purchaseMineral = () => {
     const newOrder = {...database.transientState}
 
     const lastIndex = database.purchasedResources.length - 1
+    if (lastIndex === -1){
+        newOrder.id =1
+    } else {
+        newOrder.id = database.purchasedResources[lastIndex].id + 1
+    }
 
-    newOrder.id = database.purchasedResources[lastIndex].id + 1
 
     newOrder.amount = 1
     const facilityMinerals = getFacilityMinerals();
