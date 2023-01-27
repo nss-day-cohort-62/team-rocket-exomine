@@ -7,12 +7,12 @@ export const Minerals = () => {
     let html = ""
     const transientState = getTransientState()
    
-
+html += `<h2> Facility Minerals</h2>`
     const foundFacilityId = getFacilityId()
     if (foundFacilityId) {
         for (const facility of facilities) {
             if (foundFacilityId === facility.id) {
-                html += `<h2>${facility.location}</h2>`
+                html += ` <h2>for ${facility.location}</h2>`
             }
         }
         html += "<ul>"

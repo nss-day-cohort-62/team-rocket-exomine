@@ -7,8 +7,8 @@ import { MineralInSpaceCart, Orders } from "./SpaceCart.js"
 
 export const Exomining = () => {
     return `
-        <h1>Exomining</h1>
-
+        <h1>Solar System Mining Marketplace</h1>
+        <div class="main">
         <article class="choices">
             <section class="choices__governors options">
                 ${Governors()}
@@ -17,20 +17,24 @@ export const Exomining = () => {
             <section class="choices__facilities options">
                 ${Facilities()}
                 </section>
-        <article>${Colonies()}</article>
-
         </article>
-            <section>${Minerals()}
-            </section>
 
-        </article>
+        <section class ="choices_colonies">${Colonies()}</section>
+
+        </div>
+           
 
        
 
-        <article>
+        <article class ="mineralMarket">
+        <section class="mineralCart">${Minerals()} </section>
+        <section class ="spaceCart">
             <h2>Space Cart</h2>
             ${MineralInSpaceCart()}
             <button id="orderButton">Purchase Mineral</button>
+            </section>
+
+           
         </article>
 
        

@@ -1,0 +1,86 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;800&display=swap');
+
+body {
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 400;
+    list-style-type: none;
+}
+
+h1,h2,h3 {
+    font-weight: 700;
+    
+}
+.main {
+    display: flex;
+    margin: 10px;
+    gap:300px;
+    padding: 30px;
+    margin-bottom: 10px;
+    
+}
+.options {
+    display: flex;
+    gap:10px;
+}
+label {
+    font-size: 14px;
+}
+.choices_colonies {
+    padding: auto;
+    text-align: center;
+}
+.choices {
+display: flex;
+flex-direction: column;
+gap: 50px;
+height: 100px;
+
+}
+
+
+
+.mineralMarket {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 25px;
+    gap: 20px;
+
+}
+
+.spaceCart {
+    border: 1px dashed turquoise;
+    padding: 50px;
+    text-align: center;
+    padding: 30px;
+    
+}
+.spaceCart button {
+    float: center;
+}
+
+.mineralCart {
+    border: 1px dashed purple;
+    padding: 20 px;
+    width: 75%;
+    text-align: center;
+    padding-top: 30px;
+    
+    
+    
+}
+
+.mineralCart h2{
+    display: inline;
+   
+    
+}
+
+.mineralCart ul{
+    list-style-type: none;
+}
+
+#orderButton {
+    height:60px;
+}

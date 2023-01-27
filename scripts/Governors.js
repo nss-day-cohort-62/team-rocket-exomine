@@ -17,7 +17,7 @@ export const Governors = () => {
     let html = "<label>Choose a governor</label>"
     const transientState = getTransientState()
     html += `<select id="governor">
-    <option value="0"> Choose a Governor</option>`
+    <option value="0"> Choose a Governor...</option>`
 
     const arrayOfOptions = governors.map( (governor) => {
         let selected = ""

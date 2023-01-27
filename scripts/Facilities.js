@@ -12,7 +12,7 @@ export const Facilities = () => {
     let html = "<label>Choose a facility</label>"
     const transientState = getTransientState()
     html += `<select id="facility">
-    <option value="0"> Choose a Facility</option>`
+    <option value="0"> Choose a Facility...</option>`
 
     const foundGovernorId = getGovernorId()
     if (foundGovernorId) {
