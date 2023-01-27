@@ -37,7 +37,9 @@ gap: 50px;
 height: 100px;
 
 }
-
+.choices_colonies ul {
+    list-style-type: none ;
+}
 
 
 .mineralMarket {
